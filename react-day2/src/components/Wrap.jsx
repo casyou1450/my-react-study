@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import List from './List'
-import OderForm from './OderForm'
+import OderForm from './OrderForm'
 
 const Wrap = () => {
   return (
