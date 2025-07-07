@@ -1,24 +1,29 @@
 import React from 'react'
 import '../css/orderform.css'
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 const OrderForm = () => {
 
-    const [menu, setMenu] = useState(''); 
-    const [address, setAddress] = useState('');
-    const [issue, setIssue] = useState('');
 
-    const handleMenu=(e)=>{
-        return setMenu(e.target.value);
+    const [order,setOrder]=useState({
+        menu:'',
+        address:'',
+        issue:'',
+    });
+    const handleOrder=(e)=>{
+        setOrder({
+            ...order,
+            [e.target.name]:e.target.value
+        });
     }
-    const handleAddress=(e)=>{
-        return setAddress(e.target.value);
-    }
-    const handleIssue=(e)=>{
-        return setIssue(e.target.value)
-    }
+    const inputRef=useRef();
+
     const handleSubmit=(e)=>{
         e.preventDefault();
-        alert("주문하신 메뉴: " + menu + "\n주문하신 주소: " + address + "\n주문자 요청사항: " + issue);
+        if(order.address===""){
+            inputRef.current.focus()
+            return;
+        }
+        alert("주문하신 메뉴: " + order.menu + "\n주문하신 주소: " + order.address + "\n주문자 요청사항: " + order.issue);
     }
 
     return (
@@ -27,10 +32,10 @@ const OrderForm = () => {
             <div>
                 <label htmlFor="seletMenu">메뉴선택</label>
                 <select 
-                    name="seletMenu" 
+                    name="menu" 
                     id="seletMenu" 
-                    value={menu} 
-                    onChange={handleMenu}
+                    value={order.menu} 
+                    onChange={handleOrder}
                 >
                     <option value="피자">피자</option>
                     <option value="족발">족발</option>
@@ -42,22 +47,23 @@ const OrderForm = () => {
                 <label htmlFor="orderAddress">배달받을주소</label>
                 <input 
                     type="text" 
-                    value={address} 
-                    name="orderAddress" 
+                    ref={inputRef}
+                    value={order.address} 
+                    name="address" 
                     id="orderAddress" 
                     placeholder='주문 받으실 주소를 입력하세요...' 
-                    onChange={handleAddress}
+                    onChange={handleOrder}
                 />
             </div>
             <div>
                 <label htmlFor="orderIussue">배달요청사항</label>
                 <textarea 
                     type="text" 
-                    value={issue} 
-                    name="orderIussue" 
+                    value={order.issue} 
+                    name="issue" 
                     id="orderIussue" 
                     placeholder='요청하실 사항을 입력해주세요...' 
-                    onChange={handleIssue}
+                    onChange={handleOrder}
                 />
             </div>
             <div>
