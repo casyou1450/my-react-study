@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/orderform.css'
 import { useState } from 'react';
-const OderForm = () => {
+const OrderForm = () => {
 
     const [menu, setMenu] = useState(''); 
     const [address, setAddress] = useState('');
@@ -32,10 +32,10 @@ const OderForm = () => {
                     value={menu} 
                     onChange={handleMenu}
                 >
-                    <option value="pizza">피자</option>
-                    <option value="jokbal">족발</option>
-                    <option value="burger">버거</option>
-                    <option value="chicken">치킨</option>
+                    <option value="피자">피자</option>
+                    <option value="족발">족발</option>
+                    <option value="버거">버거</option>
+                    <option value="치킨">치킨</option>
                 </select>
             </div>
             <div>
@@ -68,4 +68,4 @@ const OderForm = () => {
     )
 }
 
-export default OderForm
+export default OrderForm
