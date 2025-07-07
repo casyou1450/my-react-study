@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from './Header'
 import List from './List'
-import OderForm from './OrderForm'
+import OrderForm from './OrderForm'
 
 const Wrap = () => {
   return (
     <div>
         <Header /> 
         <List />
-        <OderForm />
+        <OrderForm />
     </div>
   )
 }
