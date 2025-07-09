@@ -5,7 +5,6 @@ import '../css/layout.css'
 
 const Wrap = () => {
   const [amount,setAmounts]=useState({
-    target:'',
     krw:'', 
     usd:'',  
   })
