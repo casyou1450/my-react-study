@@ -1,0 +1,7 @@
+body{justify-content: center;}
+li{list-style: none;}
+.wrap{width:300px;margin: auto; display: flex; flex-direction: column; padding: 10px;}
+.refund{display: flex; gap: 10px; flex-direction: column;}
+.refund li{display: flex; gap: 10px; align-items: center;}
+.refund li label{width:20px;}
+.refund li input{text-indent: 5px;}
