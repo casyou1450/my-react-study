@@ -1,0 +1,88 @@
+.Wrap {
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+
+.Input {
+    display: flex;
+    gap: 10px
+}
+
+.Input input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px
+}
+
+.Input button {
+    cursor: pointer;
+    width: 80px;
+    border: none;
+    background-color: #2593ff;
+    color: #fff;
+    border-radius: 5px
+}
+
+.Search {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.Search>input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    padding: 15px 0
+}
+
+.Search>input:focus {
+    outline: none;
+    border-bottom: 1px solid rgb(37, 147, 255)
+}
+
+.List ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.List li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(240, 240, 240)
+}
+
+.List li.done{
+    text-decoration: line-through;
+    color: gray;
+}
+
+.List li input {
+    width: 20px
+}
+
+.List li .content {
+    flex: 1
+}
+
+.List li .date {
+    font-size: 14px;
+    color: gray
+}
+
+.List li button {
+    cursor: pointer;
+    color: gray;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px
+}
