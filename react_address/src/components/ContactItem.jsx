@@ -1,11 +1,19 @@
 import "../css/ContactItem.css";
-
-export default function ContactItem() {
+//연락처 출력을 위한 state 'address' 하고 삭제를 위한 handleDel 
+export default function ContactItem({address,handleDel}) {
   return (
-    <div className="ContactItem">
-      <div className="name">이정환</div>
-      <div className="contact">king199777@gmail.com</div>
-      <button>🗑️ Remove</button>
-    </div>
+    <>
+      {
+       address.map((addr)=>{
+        return (
+          <div key={addr.id} className="ContactItem">
+            <div className="name">{addr.name}</div>
+            <div className="contact">{addr.email}</div>
+            <button onClick={()=>handleDel(addr.id)}>🗑️ Remove</button>
+          </div>
+        )
+       }) 
+      }
+    </>
   );
 }
