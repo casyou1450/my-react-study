@@ -1,7 +1,8 @@
 import "../css/ContactList.css";
 import ContactItem from "./ContactItem";
+import { memo } from "react";
 
-export default function ContactList({address,handleDel}) {
+const ContactList=({address,handleDel}) => {
   return (
     <div className="ContactList">
       <div className="title">Contact List</div>
@@ -9,3 +10,6 @@ export default function ContactList({address,handleDel}) {
     </div>
   );
 }
+
+
+export default memo(ContactList)

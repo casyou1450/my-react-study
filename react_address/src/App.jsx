@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useReducer, useRef, useCallback } from "react";
 import "./App.css";
 import ContactEditor from "./components/ContactEditor";
 import ContactList from "./components/ContactList";
@@ -27,7 +27,7 @@ function App() {
 
   //저장하는 핸들러, 이름 하고 이메일 받아서 reducer 호출 하는데 ADD라는 명령어로 호출
   //data = reducer에 전달할 데이터 (내가 입력한 정보)
-  const handleAdd = (name, email) => {
+  const handleAdd = useCallback((name, email) => {
     dispatch({
       type: "ADD",
       data: { 
@@ -36,14 +36,16 @@ function App() {
         email: email,
       }
     })
-  }
+  }, [])
+
   //id 값을 받아와서 reducer에 DEL 호출 id도 보내서
-  const handleDel = (id) => {
+  const handleDel = useCallback((id) => {
     dispatch({
       type: "DEL",
       id: id
     })
-  }
+  },[])
+
   
   return (
     <div className="App">

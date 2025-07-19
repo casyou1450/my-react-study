@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, memo } from "react";
 import "../css/ContactEditor.css";
 
-export default function ContactEditor({handleAdd}) {
+const ContactEditor=({handleAdd}) => {
   //입력 받은거 저장할려구..
   const [state,setState]=useState({
     name:'',
@@ -48,3 +48,5 @@ export default function ContactEditor({handleAdd}) {
     </div>
   );
 }
+
+export default memo(ContactEditor)

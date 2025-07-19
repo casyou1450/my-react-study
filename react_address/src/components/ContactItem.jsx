@@ -1,6 +1,8 @@
 import "../css/ContactItem.css";
+import { memo } from "react";
+
 //연락처 출력을 위한 state 'address' 하고 삭제를 위한 handleDel 
-export default function ContactItem({address,handleDel}) {
+const ContactItem = ({address,handleDel}) => {
   return (
     <>
       {
@@ -17,3 +19,5 @@ export default function ContactItem({address,handleDel}) {
     </>
   );
 }
+
+export default memo(ContactItem);
