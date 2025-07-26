@@ -1,0 +1,26 @@
+.Button{
+  background-color: rgb(236, 236, 236);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}   
+.Button_CONTROL{
+  background-color: rgb(209, 239, 110);
+  color: #fff;
+}   
+.Button_GOOD{
+    background-color: rgb(25, 211, 25);
+    color: #fff;
+}
+.Button_SOSO{
+    background-color: rgb(13, 76, 247);
+    color: #fff;
+}
+.Button_BAD{
+    background-color: rgb(237, 8, 8);
+    color: #fff;
+}
