@@ -1,0 +1,11 @@
+.wrap{
+  background: #fff;
+  color: #333;
+}
+.wrap.dark{
+  background: #333;
+  color: #fff;
+}
+a{
+  color: #333;
+}
