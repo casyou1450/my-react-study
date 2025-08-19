@@ -1,40 +1,39 @@
-import { useEffect, useState } from 'react'
-import { useSearch } from '../state/SearchContext'
-import { useListLayout } from '../state/ListLayoutContext'
-import VideoCard from '../components/element/VideoCard'
-import { getVideos } from '../api/youtube'
+import { useContext } from "react";
+//커스텀 훅 - 채널 정보와 비디오를 가져오기 위한
+import {useShowVideos } from "../hook/useYoutube";
+//검색 컨텍스트
+import { KeywordContext } from "../state/KeywordContext";
+//컴포넌트
+import VideoCard from "../components/element/VideoCard";
 
-function Video() {
-  const { searchTerm } = useSearch()
-  const { isListView } = useListLayout()
-  const [videos, setVideos] = useState([])
-  const [loading, setLoading] = useState(false)
+const Video = () => {
+  const { search } = useContext(KeywordContext);
+  const { data: videos, isLoading, error } = useShowVideos(search);
 
-  useEffect(() => {
-    const fetchVideos = async () => {
-      setLoading(true)
-      try {
-        const data = await getVideos(searchTerm || 'popular')
-        setVideos(data)
-      } catch (error) {
-        console.error('Error fetching videos:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-lg">로딩 중...</div>
+      </div>
+    );
+  }
 
-    fetchVideos()
-  }, [searchTerm])
-
-  if (loading) return <div className="loading">Loading...</div>
-
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-lg text-red-600 dark:text-red-400">에러가 발생했습니다</div>
+      </div>
+    );
+  }
   return (
-    <div className={`video-grid ${isListView ? 'list-view' : 'grid-view'}`}>
-      {videos.map((video) => (
-        <VideoCard key={video.id} video={video} />
-      ))}
+    <div className="container-xl px-4 py-6">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6">
+        {videos?.items?.map((video,index) => {
+          console.log(`${video?.id}${index}`)
+        return <VideoCard key={`${video?.id}${index}`} video={video} layout="default" />
+        })}
+      </div>
     </div>
-  )
-}
-
-export default Video
+  );
+};
+export default Video;
