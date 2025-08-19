@@ -1,28 +1,25 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Layout from './components/common/Layout'
-import Video from './pages/Video'
-import Watch from './pages/Watch'
-import { DarkModeProvider } from './state/DarkModeContext'
-import { SearchProvider } from './state/SearchContext'
-import { ListLayoutProvider } from './state/ListLayoutContext'
-import './App.css'
+import { useReducer, useState } from 'react'
+import { darkModeReducer, initialState } from './state/darkModeReducer'
+import { DarkModeContext } from './state/DarkModeContext';
+import { KeywordContext } from './state/KeywordContext';
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
+import Layout from './components/common/Layout';
+
 
 function App() {
+  const [state,dispatch] = useReducer(darkModeReducer,initialState)
+  const [search,setSearch]=useState('');
   return (
-    <DarkModeProvider>
-      <SearchProvider>
-        <ListLayoutProvider>
-          <BrowserRouter>
-            <Layout>
-              <Routes>
-                <Route path="/" element={<Video />} />
-                <Route path="/watch" element={<Watch />} />
-              </Routes>
-            </Layout>
-          </BrowserRouter>
-        </ListLayoutProvider>
-      </SearchProvider>
-    </DarkModeProvider>
+    <DarkModeContext.Provider value={{state,dispatch}}>
+      <KeywordContext.Provider value={{search,setSearch}}>
+        <div className={`wrap ${state.isDarkMode ? 'dark' : ''}`}>
+          <Header></Header>
+          <Layout></Layout>
+          <Footer></Footer>
+        </div>
+      </KeywordContext.Provider>
+    </DarkModeContext.Provider>
   )
 }
 
