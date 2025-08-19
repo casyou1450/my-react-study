@@ -5,6 +5,7 @@ import {useShowVideos } from "../hook/useYoutube";
 import { KeywordContext } from "../state/KeywordContext";
 //컴포넌트
 import VideoCard from "../components/element/VideoCard";
+import Spinner from "../components/element/Spinner";
 
 const Video = () => {
   const { search } = useContext(KeywordContext);
@@ -12,9 +13,7 @@ const Video = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="text-lg">로딩 중...</div>
-      </div>
+    <Spinner/>
     );
   }
 
