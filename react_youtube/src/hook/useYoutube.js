@@ -1,36 +1,22 @@
+// 서버에서 데이터를 가져오기 위한 React  Query 훅
+// 내가 youtube.js에서 설정한 함수
 import { useQuery } from "@tanstack/react-query";
-import youtube from "../api/youtube";
+import { getShowVideos, getSearchVideos, getChannelInfo } from "../api/youtube";
 
-export const useChannelInfo = (channelId) => {
+// 커스텀 훅
+// 비디오 뽑아오기
+// 검색어 있으면 getSearchVideos로...
+export const useShowVideos = (keyword) => {
   return useQuery({
-    queryKey: ["channel", channelId],
-    queryFn: async () => {
-      const response = await youtube.get("/channels", {
-        params: {
-          part: "snippet",
-          id: channelId,
-        },
-      });
-      return response.data.items[0];
-    },
-    enabled: !!channelId,
+    queryKey: ["showVideos", keyword],
+    queryFn: () => (keyword ? getSearchVideos(keyword) : getShowVideos()),
   });
 };
 
-export const useVideos = (keyword) => {
+//채널 정보
+export const useChannelInfo = (channelId) => {
   return useQuery({
-    queryKey: ["videos", keyword],
-    queryFn: async () => {
-      const response = await youtube.get("/search", {
-        params: {
-          part: "snippet",
-          maxResults: 25,
-          q: keyword,
-          type: "video",
-        },
-      });
-      return response.data.items;
-    },
-    enabled: !!keyword,
+    queryKey: ["channelInfo", channelId],
+    queryFn: () => getChannelInfo(channelId),
   });
 };
